@@ -1,0 +1,12 @@
+html, body {
+    background-color: aquamarine;
+    color: black;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 40px;
+}
+
+button{
+    font-size: 15px;
+    padding: 10px;
+    margin: 3px;
+}
