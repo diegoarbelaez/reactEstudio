@@ -12,7 +12,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     {/* <HelloWorldApp />
     <DiegoComponent nombre='Diego!' apellido='Arbelaez' edad={41} />
-    <Funcion /> */}
+    <Funcion /> 
     <CounterApp value={20} />
+    <DiegoComponent nombre='Diego' apellido='Arbelaez' edad={41} />*/ 
+    }
+     <CounterApp value={20} />
+   
   </React.StrictMode>
 );

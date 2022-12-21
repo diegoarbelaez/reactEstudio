@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 
 export const DiegoComponent = ({nombre, apellido}) => {
   return (
-    <div> {nombre} {apellido} Component!</div>
+    <div>{nombre} {apellido} Componente!</div>
   )
 }
+
 
 DiegoComponent.propTypes = {
   nombre: PropTypes.string.isRequired,
