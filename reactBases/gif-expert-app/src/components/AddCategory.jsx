@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const AddCategory = ({ onAddCategory }) => {
+export const AddCategory = ({ onNewCategory }) => {
   const [inputValue, setInputValue] = useState('');
 
   const onInputChange = (event) => {
@@ -11,7 +11,7 @@ export const AddCategory = ({ onAddCategory }) => {
   const envioFormulario = (event) => {
     event.preventDefault();
     if (inputValue.trim().length <= 1) return; //valida que sea mayor a 1 caracter, para agregarlo
-    onAddCategory(inputValue.trim());
+    onNewCategory(inputValue.trim());
     console.log("Formulario enviado...");
   };
 
