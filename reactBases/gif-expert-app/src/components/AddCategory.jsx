@@ -4,7 +4,6 @@ export const AddCategory = ({ onNewCategory }) => {
   const [inputValue, setInputValue] = useState('');
 
   const onInputChange = (event) => {
-    console.log(inputValue);
     setInputValue(event.target.value);
   };
 
@@ -12,7 +11,6 @@ export const AddCategory = ({ onNewCategory }) => {
     event.preventDefault();
     if (inputValue.trim().length <= 1) return; //valida que sea mayor a 1 caracter, para agregarlo
     onNewCategory(inputValue.trim());
-    console.log("Formulario enviado...");
   };
 
   return (

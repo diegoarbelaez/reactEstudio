@@ -7,6 +7,8 @@ export const GifExpertApp = () => {
     "Saint Seiya"
   ]);
 
+  
+
   const onNewCategory = (value) => {
     // setCategories([value, ...categories])
     if (categories.includes(value)) {
@@ -14,6 +16,7 @@ export const GifExpertApp = () => {
     }
     setCategories([...categories, value]); // Agrega al final del arreglo
   };
+
 
   return (
     <>
