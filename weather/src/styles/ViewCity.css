@@ -1,0 +1,32 @@
+
+.redLocation{
+    font-size: 60px;
+    color: brown;
+}
+
+.texto1{
+    font-family: 'Roboto';
+    font-size: 20px;
+    font-weight: 700;
+    color: rgb(66, 66, 199);
+}
+
+.texto2{
+    font-family: 'Roboto';
+    font-size: 20px;
+    font-weight: 700;
+}
+
+
+.texto3{
+    font-family: 'Roboto';
+    font-size: 15px;
+    font-weight: 700;
+    color: rgb(66, 66, 199);
+}
+
+.texto4{
+    font-family: 'Roboto';
+    font-size: 15px;
+    font-weight: 700;
+}
