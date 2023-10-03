@@ -27,11 +27,18 @@ export default function Weather() {
           setNoEncontrada(true);
           return;
         } else {
-          setNoEncontrada(false);
-          setWeatherObject(datos);
-          setIsLoading(false);
-          document.title = "Weather "+ city;
-          console.log("Clima Cambiado")
+
+          //This timeout just to show the loader component
+          setTimeout( ()=>{
+            setNoEncontrada(false);
+            setWeatherObject(datos);
+            setIsLoading(false);
+            document.title = "Weather "+ city;
+            console.log("Clima Cambiado")  
+          }, 1000)
+
+
+
         }
       })
       .catch((error) => {
