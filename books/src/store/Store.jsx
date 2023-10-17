@@ -17,15 +17,24 @@ export default function Store({ children }) {
 
   const [items, setItems] = useState([]);
 
+  //Manejamos el storage en el useEffect, solo para inicializarlo
+  useEffect(() => {
+    const items_iniciales = localStorage.getItem("LIBROS");
+    if (items_iniciales) {
+      setItems(JSON.parse(items_iniciales));
+    }
+  }, []);
+
   const createItem = (item_new) => {
     const temp_items = [...items];
     temp_items.push(item_new);
     setItems(temp_items);
+    localStorage.setItem('LIBROS',JSON.stringify(temp_items))
   };
 
   const getItem = (id) => {
-    item_encontrado = items.filter((id) => items.id == id);
-    return item_encontrado;
+    const item_encontrado = items.filter((elemento) => elemento.id == id);
+    return item_encontrado[0];
   };
 
   const updateItem = (item) => {
@@ -33,7 +42,7 @@ export default function Store({ children }) {
     items[index] = { ...item };
   };
 
-  //PASO 4: Declarar el provider tal como está en esta sintaxis. El prop value={ {estdos, funciones} } contiene los estados y funciones desarrolladas en el paso 2
+  //PASO 4: Declarar el provider tal como está en esta sintaxis. El prop value={ {estdos, funciones} } contiene los estados y funciones desarrolladas en el paso 2 y 3
   return (
     <AppContext.Provider value={{ items, createItem, updateItem, getItem }}>
       {children}

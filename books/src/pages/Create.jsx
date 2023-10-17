@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import { useAppContext } from "../store/Store";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Layout from "../components/Layout";
+
+//UI
+import { Input, Text, Stack, Button, Checkbox, CheckboxGroup  } from '@chakra-ui/react'
+
+
+//
 
 export default function Create() {
   const [title, setTitle] = useState("");
@@ -11,6 +18,7 @@ export default function Create() {
   const [review, setReview] = useState("");
 
   const store = useAppContext();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const name = e.target.name;
@@ -52,6 +60,7 @@ export default function Create() {
 
     //Agregar Libro
     store.createItem(newBook);
+    navigate('/');
   }
 
   function handleOnchangeFile(e) {
@@ -66,46 +75,59 @@ export default function Create() {
   }
 
   return (
-    <div>
-      <Link to="/">Home</Link>
+    <Layout>
       <form onSubmit={handleSubmit}>
         <div>
-          <div>Title</div>
-          <input
+        <Stack spacing={3}>
+          <Input placeholder='Title...' size='md'
+          type="text"
+          name="title"
+          onChange={handleChange}
+          value={title}
+          />
+       {/*    <input
             type="text"
             name="title"
             onChange={handleChange}
             value={title}
-          />
-          <input
+          /> */}
+          <Input
+          placeholder="Author"
+            mb='8px'
             type="text"
             name="author"
             onChange={handleChange}
             value={author}
           />
-          <input type="file" name="cover" onChange={handleOnchangeFile} />
+          <Input type="file" name="cover" onChange={handleOnchangeFile} />
           <div>{!!cover ? <img src={cover}></img> : <p>No hay imagen</p>}</div>
-          <input
+          <Input
+           placeholder="Intro..."
             type="text"
             name="intro"
             onChange={handleChange}
             value={intro}
           />
-          <input
+          <Checkbox
             type="checkbox"
             name="completed"
             onChange={handleChange}
             value={completed}
-          />
-          <input
+          >
+            Completed
+          </Checkbox>
+          <Input
+           placeholder="Review.."
             type="text"
             name="review"
             onChange={handleChange}
             value={review}
           />
-          <input type="submit" value="Register Book"></input>
+          <Button colorScheme='linkedin' variant='solid' type="submit" value="Register Book">Create Book</Button>
+          </Stack>
         </div>
       </form>
-    </div>
+      
+    </Layout>
   );
 }
