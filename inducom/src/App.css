@@ -1,0 +1,181 @@
+.contenedor {
+  width: 100%;
+  padding: 10px;
+}
+
+.suggestions {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 999;
+  cursor: pointer;
+  width: 400px;
+  max-height: 400px;
+  overflow: auto;
+}
+
+.suggestions > div {
+  padding: 15px 25px;
+  border-bottom: 2px solid #2d2e36;
+  transition: all 0.1s ease;
+}
+
+.suggestions > div:hover {
+  background-color: #dbdbdb !important;
+  color: #000000;
+}
+
+.suggestions > div,
+.form-control-auto input {
+  font-size: 14px !important;
+  background-color: #ededed;
+  color: #000000;
+}
+
+.sugesstion-auto {
+  display: block;
+  border-radius: 7px;
+  position: relative;
+  transition: background 0.3s ease;
+}
+
+.cerrar {
+  border-radius: 30px;
+  background-color: brown;
+  color: white;
+  width: 100px;
+  height: 30px;
+  text-align: center;
+  font-size: 10px;
+}
+
+.header_card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.actividades_grabadas {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #29a740;
+  color: #ffffff;
+  border-radius: 20px;
+  width: 300px;
+  height: 90px;
+  font-size: 30px;
+}
+
+
+.actividades_grabadas_texto{
+  color: #ffffff;
+  font-size: 15px;
+}
+
+.valor_a_pagar{
+  font-size: 30px;
+  color: #b40909;
+  font-weight: bold;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.a_favor{
+  font-size: 15px;
+  color: #29a740;
+  font-weight: bold;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.a_cargo{
+  font-size: 15px;
+  color: #29a740;
+  font-weight: bold;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.falta{
+  color: #b40909;
+}
+.correcto{
+  color: #29a740;
+  font-weight: bold;
+}
+
+.contenedor_mensaje_error{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0px;
+  margin: 0px;
+
+}
+
+.texto_1{
+  text-align: center;
+}
+
+/* estilo de un circulo de 10 x 10 pixeles para encerrar un numero */
+
+.circulo {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #b40909;
+  color: #ffffff;
+  text-align: center;
+  font-size: 20px;
+  line-height: 0px;
+  font-weight: bold;
+  margin-right: 0px;
+}
+
+
+
+
+/*
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+*/
