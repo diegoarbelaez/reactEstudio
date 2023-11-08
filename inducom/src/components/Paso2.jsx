@@ -1,14 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { useAppContext } from "../context/Contexto";
 import CurrencyInput from "react-currency-input-field";
 import TextAutocompletar from "./TextAutocompletar";
 import actividades_ciiu from "../assets/actividades_ciiu";
 import ProgressBar from "@ramonak/react-progress-bar";
+import { AiFillCheckCircle } from "react-icons/ai";
+import { AiFillCloseCircle } from "react-icons/ai";
 
 export default function Paso2() {
   const datosContexto = useAppContext();
-  
+
+  const [validado, setValidado] = useState(false);
+
   //Para ir al siguiente
   const siguiente = () => {
     datosContexto.pasoSiguiente();
@@ -27,10 +31,29 @@ export default function Paso2() {
   const [actividad3, setActividad3] = useState("");
   const [valorActividad3, setValorActividad3] = useState(0);
   const [montoActividad3, setMontoActividad3] = useState(0);
-  const [montoOtrasActividades, setMontoOtrasActividades] = useState(0);
+  const [actividad4, setActividad4] = useState("");
+  const [valorActividad4, setValorActividad4] = useState(0);
+  const [montoActividad4, setMontoActividad4] = useState(0);
+  //const [montoOtrasActividades, setMontoOtrasActividades] = useState(0);
   const [ley56, setLey56] = useState(0);
 
-  const [validado, setValidado] = useState(false);
+
+  const [validado_sumas_detalle, setValidado_sumas_detalle] = useState(false);
+
+  useEffect(() => {
+    validarFormulario();
+  }, [
+    valorActividad1,
+    montoActividad1,
+    valorActividad2,
+    montoActividad2,
+    valorActividad3,
+    montoActividad3,
+    valorActividad4,
+    montoActividad4
+  ])
+  
+
 
   const getSelectedVal = (value) => {
     console.log(value);
@@ -51,9 +74,13 @@ export default function Paso2() {
     setMontoActividad3(value);
   };
 
-  const getMontoOtrasActividades = (value) => {
-    setMontoOtrasActividades(value);
+  const getMonto4 = (value) => {
+    setMontoActividad4(value);
   };
+
+  /*   const getMontoOtrasActividades = (value) => {
+    setMontoOtrasActividades(value);
+  }; */
 
   //Recuperar variables del contexto
   var tipo_identificacion = datosContexto.tipo_identificacion;
@@ -73,7 +100,6 @@ export default function Paso2() {
   var v16 = datosContexto.v16;
   var v19 = datosContexto.v19;
   var v20 = datosContexto.v20;
-
 
   function pesos(number) {
     return new Intl.NumberFormat("es-CO", {
@@ -107,6 +133,14 @@ export default function Paso2() {
     setValorActividad3(valor);
   };
 
+  const getSelectedValActividad4 = (value) => {
+    const texto = value;
+    const actividad4 = texto.split(" - ")[0];
+    const valor = texto.split(" - ")[2];
+    setActividad4(actividad4);
+    setValorActividad4(valor);
+  };
+
   const getLey56 = (value, name) => {
     setLey56(value);
   };
@@ -115,31 +149,39 @@ export default function Paso2() {
     console.log(montoActividad1);
     console.log(montoActividad2);
     console.log(montoActividad3);
+    console.log(montoActividad4);
     console.log(v16);
     if (
       parseInt(montoActividad1, 10) +
         parseInt(montoActividad2, 10) +
-        parseInt(montoActividad3, 10) ===
+        parseInt(montoActividad3, 10) +
+        parseInt(montoActividad4, 10) ===
       v16
     ) {
       const v20 =
         parseInt((valorActividad1 / 1000) * montoActividad1, 10) +
         parseInt((valorActividad2 / 1000) * montoActividad2, 10) +
         parseInt((valorActividad3 / 1000) * montoActividad3, 10) +
-        parseInt(ley56, 10)
-        + montoOtrasActividades
+        parseInt((valorActividad4 / 1000) * montoActividad4, 10) +
+        parseInt(ley56, 10);
+      // + montoOtrasActividades
       datosContexto.setV20(v20);
       datosContexto.setV19(ley56);
       console.log(v20);
-      siguiente();
+      setValidado(true);
     } else {
-      window.alert("Los montos no coinciden con el valor de los ingresos");
+      setValidado(false);
     }
   };
 
   const getChanges = (value) => {
     console.log(value);
   };
+
+
+  const validarFormulario = () => {
+    calcularV20();
+  }
 
   return (
     <>
@@ -180,7 +222,9 @@ export default function Paso2() {
                         <p>
                           <div className="actividades_grabadas">
                             {pesos(v16)}
-                            <p className="actividades_grabadas_texto">Según lo reportado en el paso anterior</p>
+                            <p className="actividades_grabadas_texto">
+                              Según lo reportado en el paso anterior
+                            </p>
                           </div>
                         </p>
                       </div>
@@ -188,7 +232,7 @@ export default function Paso2() {
                     <p>
                       <b>
                         Del total de ingresos gravables que es {pesos(v16)} por
-                        favor indíquenos las actividades asociadas a ese ingreso
+                        favor indíquenos las actividades asociadas a ese ingreso. Estas actividades deben sumar el valor total declarado (Casilla Verde)
                       </b>
                     </p>
                     <div className="form-group row">
@@ -253,6 +297,26 @@ export default function Paso2() {
                     </div>
                     <div className="form-group row">
                       <label className="col-4 texto_campo m-1">
+                        Actividad 4
+                      </label>
+                    </div>
+                    <div className="form-group row">
+                      <TextAutocompletar
+                        className="form-control col-12 m-1"
+                        pholder="Keyword..."
+                        data={actividades_ciiu}
+                        onSelected={getSelectedValActividad4}
+                        onChange={getChanges}
+                      />
+                      <label className="col-3 texto_campo m-1">Valor:</label>
+                      <CurrencyInput
+                        className="form-control col-6 texto_formulario number m-1"
+                        name="v8"
+                        onValueChange={(value, name) => getMonto4(value, name)}
+                      />
+                    </div>
+                    <div className="form-group row">
+                      <label className="col-3 texto_campo m-1">
                         Impuesto Ley 56 de 1981
                       </label>
                       <CurrencyInput
@@ -262,7 +326,7 @@ export default function Paso2() {
                         onValueChange={(value, name) => getLey56(value)}
                       />
                     </div>
-                    <div className="form-group row">
+                    {/*  <div className="form-group row">
                       <label className="col-4 texto_campo m-1">
                         Otras actividades
                       </label>
@@ -272,12 +336,12 @@ export default function Paso2() {
                         value={montoOtrasActividades}
                         onValueChange={(value) => getMontoOtrasActividades(value)}
                       />
-                      </div>
+                      </div> */}
                     <button
                       type="submit"
                       className="btn btn-success btn-block"
                       disabled={validado ? false : true}
-                      onClick={calcularV20}
+                      onClick={siguiente}
                     >
                       CONTINUAR
                     </button>
@@ -288,44 +352,40 @@ export default function Paso2() {
           </div>
           <div className="col-3">
             <div className="card">
+              <div className="card-header">
+                <b>Campos a Diligenciar</b>
+              </div>
               <div className="card-body">
-                <div className="card">
-                  <div className="card-body">
-                    <p>
-                      Tipo de Identificacion: {tipo_identificacion}
-                      <br />
-                      Identificacion: {identificacion}
-                      <br />
-                      Nombre: {nombre}
-                      <br />
-                      Direccion: {direccion}
-                      <br />
-                      Telefono: {telefono}
-                      <br />
-                      Correo: {correo}
-                      v8: {pesos(v8)}
-                      <br />
-                      v9: {pesos(v9)}
-                      <br />
-                      v11: {pesos(v11)}
-                      <br />
-                      v12: {pesos(v12)}
-                      <br />
-                      v13: {pesos(v13)}
-                      <br />
-                      v14: {pesos(v14)}
-                      <br />
-                      v15: {pesos(v15)}
-                      <br />
-                      v16: {pesos(v16)}
-                      <br />
-                      v19: {pesos(v19)}
-                      <br />
-                      v20: {pesos(v20)}
-                      <br />
-                    </p>
+                <p className="texto_1">
+                  Asegurate que todos los campos del formulario sean
+                  diligenciados. <br />
+                  Cuando los completas correctamente, se marca con un check
+                  verde.
+                </p>
+
+                {!validado ? (
+                  <div className="contenedor_mensaje_error">
+                    <div>
+                      <span className="falta">Distribución de Ingresos no suma el valor declarado</span>
+                    </div>
+                    <div>
+                      <span className="falta">
+                        <AiFillCloseCircle />
+                      </span>
+                    </div>
                   </div>
-                </div>
+                ) : (
+                  <div className="contenedor_mensaje_error">
+                    <div>
+                      <span className="correcto">Distribución de Ingresos Completada</span>
+                    </div>
+                    <div>
+                      <span className="correcto">
+                        <AiFillCheckCircle />
+                      </span>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>

@@ -136,7 +136,7 @@ export default function Paso1() {
 
   const validarFormulario = () => {
 
-    if (tipo_identificacion == 0) {
+    if (tipo_identificacion == 0 || tipo_identificacion == "" || tipo_identificacion == undefined) {
       setValidado_tipo_identificacion(false);
       setValidado(false);
     } else {
@@ -175,7 +175,7 @@ export default function Paso1() {
     if (
       telefono == 0 ||
       telefono == "" ||
-      telefono.length < 10 ||
+      telefono.length != 10 ||
       !telefono.startsWith(3)
     ) {
       setValidado_telefono(false);
@@ -254,9 +254,22 @@ export default function Paso1() {
       setValidado(true);
     }
 
-    console.log(
-      "validado_tipo_identificacion: " + validado_tipo_identificacion
-    );
+
+    console.log(validado_tipo_identificacion);
+    console.log(validado_identificacion);
+    console.log(validado_nombre);
+    console.log(validado_direccion);
+    console.log(validado_telefono);
+    console.log(validado_correo);
+    console.log(validado_v8);
+    console.log(validado_v9);
+    console.log(validado_v11);
+    console.log(validado_v12);
+    console.log(validado_v13);
+    console.log(validado_v14);
+    console.log(validado_v15);
+    console.log(validado);
+
   };
 
   return (
