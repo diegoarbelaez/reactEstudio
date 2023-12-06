@@ -7,6 +7,7 @@ import actividades_ciiu from "../assets/actividades_ciiu";
 import ProgressBar from "@ramonak/react-progress-bar";
 import { AiFillCheckCircle } from "react-icons/ai";
 import { AiFillCloseCircle } from "react-icons/ai";
+import Controles from "./Controles";
 
 export default function Paso2() {
   const datosContexto = useAppContext();
@@ -167,6 +168,31 @@ export default function Paso2() {
       // + montoOtrasActividades
       datosContexto.setV20(v20);
       datosContexto.setV19(ley56);
+      //Guarda los valores de montos, códigos de actividades y milajes en el contexto
+      datosContexto.setCodigoActividad1(actividad1);
+      datosContexto.setCodigoActividad2(actividad2);
+      datosContexto.setCodigoActividad3(actividad3);
+      datosContexto.setCodigoActividad4(actividad4);
+      datosContexto.setMilajeActividad1(valorActividad1);
+      datosContexto.setMilajeActividad2(valorActividad2);
+      datosContexto.setMilajeActividad3(valorActividad3);
+      datosContexto.setMilajeActividad4(valorActividad4);
+      datosContexto.setMontoActividad1(montoActividad1);
+      datosContexto.setMontoActividad2(montoActividad2);
+      datosContexto.setMontoActividad3(montoActividad3);
+      datosContexto.setMontoActividad4(montoActividad4);
+      datosContexto.setTotalActividad1((valorActividad1 / 1000) * montoActividad1, 10);
+      datosContexto.setTotalActividad2((valorActividad2 / 1000) * montoActividad2, 10);
+      datosContexto.setTotalActividad3((valorActividad3 / 1000) * montoActividad3, 10);
+      datosContexto.setTotalActividad4((valorActividad4 / 1000) * montoActividad4, 10);
+      datosContexto.setLey56(ley56);
+      
+
+
+
+
+
+
       console.log(v20);
       setValidado(true);
     } else {
@@ -186,6 +212,7 @@ export default function Paso2() {
   return (
     <>
       <div className="contenedor">
+        <Controles />
         <div className="row">
           <div className="col-9">
             <div className="card">
@@ -219,14 +246,12 @@ export default function Paso2() {
                         </p>
                       </div>
                       <div>
-                        <p>
                           <div className="actividades_grabadas">
                             {pesos(v16)}
                             <p className="actividades_grabadas_texto">
                               Según lo reportado en el paso anterior
                             </p>
                           </div>
-                        </p>
                       </div>
                     </div>
                     <p>

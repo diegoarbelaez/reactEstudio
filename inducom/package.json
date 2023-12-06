@@ -15,6 +15,7 @@
     "react-currency-input-field": "^3.6.11",
     "react-dom": "^18.2.0",
     "react-icons": "^4.11.0",
+    "react-pdf-html": "^1.1.18",
     "reactjs-popup": "^2.0.6"
   },
   "devDependencies": {

@@ -6,6 +6,7 @@ const AppContext = createContext({
   pasoActivo: 1,
   pasoSiguiente: () => {},
   pasoAnterior: () => {},
+  reiniciar: () => {},
   v8: 0,
   setV8: () => {},
   v9: 0,
@@ -78,8 +79,44 @@ const AppContext = createContext({
   setTelefono: () => {},
   correo: "",
   setCorreo: () => {},
+  Fecha: "",
+  setFecha: () => {},
   favor_o_cargo: 2, // 0 = a cargo, 1 = a favor, 2 = sin definir
   setFavor_o_cargo: () => {},
+  codigoActividad1: 0,
+  setCodigoActividad1: () => {},
+  milajeActividad1: 0,
+  setMilajeActividad1: () => {},
+  montoActividad1: 0,
+  setMontoActividad1: () => {},
+  totalActividad1: 0,
+  setTotalActividad1: () => {},
+  codigoActividad2: 0,
+  setCodigoActividad2: () => {},
+  milajeActividad2: 0,
+  setMilajeActividad2: () => {},
+  montoActividad2: 0,
+  setMontoActividad2: () => {},
+  totalActividad2: 0,
+  setTotalActividad2: () => {},
+  codigoActividad3: 0,
+  setCodigoActividad3: () => {},
+  milajeActividad3: 0,
+  setMilajeActividad3: () => {},
+  montoActividad3: 0,
+  setMontoActividad3: () => {},
+  totalActividad3: 0,
+  setTotalActividad3: () => {},
+  codigoActividad4: 0,
+  setCodigoActividad4: () => {},
+  milajeActividad4: 0,
+  setMilajeActividad4: () => {},
+  montoActividad4: 0,
+  setMontoActividad4: () => {},
+  totalActividad4: 0,
+  setTotalActividad4: () => {},
+  ley56: 0,
+  setLey56: () =>{}
 });
 
 export default function Contexto({ children }) {
@@ -92,6 +129,7 @@ export default function Contexto({ children }) {
   const [direccion, setDireccion] = useState("");
   const [telefono, setTelefono] = useState("");
   const [correo, setCorreo] = useState("");
+  const [Fecha, setFecha] = useState("");
   const [v8, setV8] = useState(0);
   const [v9, setV9] = useState(0);
   const [v11, setV11] = useState(0);
@@ -123,6 +161,23 @@ export default function Contexto({ children }) {
   const [v39, setV39] = useState(0); // Voluntario
   const [v40, setV40] = useState(0); // Total a pagar con voluntario (38 + 39)
   const [favor_o_cargo, setFavor_o_cargo] = useState(2); // 0 = a cargo, 1 = a favor, 2 = sin definir
+  const [codigoActividad1, setCodigoActividad1] = useState(0);
+  const [milajeActividad1, setMilajeActividad1] = useState(0);
+  const [montoActividad1, setMontoActividad1] = useState(0);
+  const [totalActividad1, setTotalActividad1] = useState(0);
+  const [codigoActividad2, setCodigoActividad2] = useState(0);
+  const [milajeActividad2, setMilajeActividad2] = useState(0);
+  const [montoActividad2, setMontoActividad2] = useState(0);
+  const [totalActividad2, setTotalActividad2] = useState(0);
+  const [codigoActividad3, setCodigoActividad3] = useState(0);
+  const [milajeActividad3, setMilajeActividad3] = useState(0);
+  const [montoActividad3, setMontoActividad3] = useState(0);
+  const [totalActividad3, setTotalActividad3] = useState(0);
+  const [codigoActividad4, setCodigoActividad4] = useState(0);
+  const [milajeActividad4, setMilajeActividad4] = useState(0);
+  const [montoActividad4, setMontoActividad4] = useState(0);
+  const [totalActividad4, setTotalActividad4] = useState(0); 
+  const [ley56, setLey56] = useState(0);
   
   const pasoSiguiente = () => {
     setPasoActivo(pasoActivo + 1);
@@ -132,6 +187,47 @@ export default function Contexto({ children }) {
     setPasoActivo(pasoActivo - 1);
   };
 
+  const reiniciar = () => { 
+    setPasoActivo(1);
+    setTipo_identificacion("");
+    setIdentificacion("");
+    setNombre("");
+    setDireccion("");
+    setTelefono("");
+    setCorreo("");
+    setFecha("");
+    setV8(0);
+    setV9(0);
+    setV11(0);
+    setV12(0);
+    setV13(0);
+    setV14(0);
+    setV15(0);
+    setV16(0);
+    setV19(0);
+    setV20(0);
+    setV21(0);
+    setV22(0);
+    setV23(0);
+    setV24(0);
+    setV25(0);
+    setV26(0);
+    setV27(0);
+    setV28(0);
+    setV29(0);
+    setV30(0);
+    setV31(0);
+    setV32(0);
+    setV33(0);
+    setV34(0);
+    setV35(0);
+    setV36(0);
+    setV37(0);
+    setV38(0);
+    setV39(0);
+    setV40(0);
+  }
+
   return (
     <AppContext.Provider
       value={{
@@ -139,6 +235,7 @@ export default function Contexto({ children }) {
         setPasoActivo,
         pasoSiguiente,
         pasoAnterior,
+        reiniciar,
         tipo_identificacion,
         setTipo_identificacion,
         identificacion,
@@ -151,6 +248,8 @@ export default function Contexto({ children }) {
         setTelefono,
         correo,
         setCorreo,
+        Fecha,
+        setFecha,
         v8,
         setV8,
         v9,
@@ -213,6 +312,40 @@ export default function Contexto({ children }) {
         setV40,
         favor_o_cargo,
         setFavor_o_cargo,
+        codigoActividad1,
+        setCodigoActividad1,
+        milajeActividad1,
+        setMilajeActividad1,
+        montoActividad1,
+        setMontoActividad1,
+        totalActividad1,
+        setTotalActividad1,
+        codigoActividad2,
+        setCodigoActividad2,
+        milajeActividad2,
+        setMilajeActividad2,
+        montoActividad2,
+        setMontoActividad2,
+        totalActividad2,
+        setTotalActividad2,
+        codigoActividad3,
+        setCodigoActividad3,
+        milajeActividad3,
+        setMilajeActividad3,
+        montoActividad3,
+        setMontoActividad3,
+        totalActividad3,
+        setTotalActividad3,
+        codigoActividad4,
+        setCodigoActividad4,
+        milajeActividad4,
+        setMilajeActividad4,
+        montoActividad4,
+        setMontoActividad4,
+        totalActividad4,
+        setTotalActividad4,
+        ley56,
+        setLey56
       }}
     >
       {children}

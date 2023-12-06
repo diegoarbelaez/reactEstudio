@@ -9,11 +9,15 @@ import { AiFillCloseCircle } from "react-icons/ai";
 export default function Paso1() {
   const datosContexto = useAppContext();
 
-  const [validado, setValidado] = useState(false);
-
   const siguiente = () => {
     datosContexto.pasoSiguiente();
   };
+
+  //fijamos la fecha al inicio del app
+  useEffect(() => {
+    //fecha de hoy, para la presentación en formato YYYY-MM-DD
+    datosContexto.setFecha(new Date().toISOString().slice(0, 10));
+  }, []);
 
   //Recuperar variables del contexto
   var tipo_identificacion = datosContexto.tipo_identificacion;
@@ -51,6 +55,15 @@ export default function Paso1() {
   const [validado_v14, setValidado_v14] = useState(false);
   const [validado_v15, setValidado_v15] = useState(false);
 
+  //Define la fecha de presentación de la declaración, que es la fecha actual:
+
+  const fecha_actual = new Date();
+  const dia = fecha_actual.getDate();
+  const mes = fecha_actual.getMonth() + 1;
+  const anio = fecha_actual.getFullYear();
+  const fecha_presentacion = anio + "-" + mes + "-" + dia;
+  datosContexto.Fecha = fecha_presentacion;
+
   useEffect(() => {
     validarFormulario();
   }, [
@@ -68,7 +81,6 @@ export default function Paso1() {
     datosContexto.v14,
     datosContexto.v15,
     datosContexto.v16,
-    validado
   ]);
 
   //inicializar valores
@@ -76,6 +88,7 @@ export default function Paso1() {
 
   const calcularv16 = (e) => {
     //Esta funcion calcula la variable 16 TOTAL INGRESOS GRAVABLES (RENGLÓN 10 MENOS 11,12,13,14 Y 15)
+    console.log("Calcular v16");
     datosContexto.setV16(v8 - v9 - v11 - v12 - v13 - v14 - v15);
     siguiente();
   };
@@ -135,13 +148,14 @@ export default function Paso1() {
   // validaciones del formulario, todos los estados deben tener algún valor
 
   const validarFormulario = () => {
-
-    if (tipo_identificacion == 0 || tipo_identificacion == "" || tipo_identificacion == undefined) {
+    if (
+      tipo_identificacion == 0 ||
+      tipo_identificacion == "" ||
+      tipo_identificacion == undefined
+    ) {
       setValidado_tipo_identificacion(false);
-      setValidado(false);
     } else {
       setValidado_tipo_identificacion(true);
-      setValidado(true);
     }
 
     if (
@@ -150,26 +164,20 @@ export default function Paso1() {
       identificacion.length < 5
     ) {
       setValidado_identificacion(false);
-      setValidado(false);
     } else {
       setValidado_identificacion(true);
-      setValidado(true);
     }
 
     if (nombre == 0 || nombre == "" || nombre.length < 5) {
       setValidado_nombre(false);
-      setValidado(false);
     } else {
       setValidado_nombre(true);
-      setValidado(true);
     }
 
     if (direccion == 0 || direccion == "" || direccion.length < 5) {
       setValidado_direccion(false);
-      setValidado(false);
     } else {
       setValidado_direccion(true);
-      setValidado(true);
     }
 
     if (
@@ -179,10 +187,8 @@ export default function Paso1() {
       !telefono.startsWith(3)
     ) {
       setValidado_telefono(false);
-      setValidado(false);
     } else {
       setValidado_telefono(true);
-      setValidado(true);
     }
 
     if (
@@ -192,85 +198,53 @@ export default function Paso1() {
       !/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(correo)
     ) {
       setValidado_correo(false);
-      setValidado(false);
     } else {
       setValidado_correo(true);
-      setValidado(true);
     }
 
     if (v8 == "" || v8 < 0 || v8 == undefined) {
       setValidado_v8(false);
-      setValidado(false);
     } else {
       setValidado_v8(true);
-      setValidado(true);
     }
 
     if (v9 < 0 || v9 == "" || v9 == undefined) {
       setValidado_v9(false);
-      setValidado(false);
     } else {
       setValidado_v9(true);
-      setValidado(true);
     }
 
     if (v11 < 0 || v11 == "" || v11 == undefined) {
       setValidado_v11(false);
-      setValidado(false);
     } else {
       setValidado_v11(true);
-      setValidado(true);
     }
 
     if (v12 < 0 || v12 == "" || v12 == undefined) {
       setValidado_v12(false);
-      setValidado(false);
     } else {
       setValidado_v12(true);
-      setValidado(true);
     }
 
     if (v13 < 0 || v13 == "" || v13 == undefined) {
       setValidado_v13(false);
-      setValidado(false);
     } else {
       setValidado_v13(true);
-      setValidado(true);
     }
 
     if (v14 < 0 || v14 == "" || v14 == undefined) {
       setValidado_v14(false);
-      setValidado(false);
     } else {
       setValidado_v14(true);
-      setValidado(true);
     }
 
     if (v15 < 0 || v15 == "" || v15 == undefined) {
       setValidado_v15(false);
-      setValidado(false);
     } else {
       setValidado_v15(true);
-      setValidado(true);
     }
-
-
-    console.log(validado_tipo_identificacion);
-    console.log(validado_identificacion);
-    console.log(validado_nombre);
-    console.log(validado_direccion);
-    console.log(validado_telefono);
-    console.log(validado_correo);
-    console.log(validado_v8);
-    console.log(validado_v9);
-    console.log(validado_v11);
-    console.log(validado_v12);
-    console.log(validado_v13);
-    console.log(validado_v14);
-    console.log(validado_v15);
-    console.log(validado);
-
   };
+
 
   return (
     <div className="contenedor">
@@ -483,10 +457,27 @@ export default function Paso1() {
                       />
                     </div>
                   </div>
+
                   <button
                     className="btn btn-success btn-block"
                     onClick={calcularv16}
-                    disabled={!validado}
+                    disabled={
+                      validado_tipo_identificacion &&
+                      validado_identificacion &&
+                      validado_nombre &&
+                      validado_direccion &&
+                      validado_telefono &&
+                      validado_correo &&
+                      validado_v8 &&
+                      validado_v9 &&
+                      validado_v11 &&
+                      validado_v12 &&
+                      validado_v13 &&
+                      validado_v14 &&
+                      validado_v15
+                        ? false
+                        : true
+                    }
                   >
                     CONTINUAR
                   </button>

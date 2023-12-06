@@ -4,6 +4,7 @@ import Paso1 from "./Paso1";
 import Paso2 from "./Paso2";
 import Paso3 from "./Paso3";
 import Paso4 from "./Paso4";
+import Paso5 from "./Paso5";
 
 export default function Selector() {
   const datosContexto = useAppContext();
@@ -18,6 +19,8 @@ export default function Selector() {
       return <Paso3 />;
     case 4:
       return <Paso4 />;
+    case 5:
+      return <Paso5 />;
     default:
       return <Paso1 />;
   }

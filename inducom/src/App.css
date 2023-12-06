@@ -55,6 +55,15 @@
   justify-content: space-between;
 }
 
+.header_card_center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
 .actividades_grabadas {
   display: flex;
   flex-direction: column;
@@ -131,6 +140,108 @@
   margin-right: 0px;
 }
 
+.acciones{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 10px;
+}
+
+.pagar{
+  background-color: #29a740;
+  color: #ffffff;
+  border-radius: 20px;
+  width: 100px;
+  height: 30px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.guardar{
+  background-color: #301ca0;
+  color: #ffffff;
+  border-radius: 20px;
+  width: 100px;
+  height: 30px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.boton_imprimir{
+  background-color: #301ca0;
+  color: #ffffff;
+  border-radius: 20px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.boton_imprimir:hover{
+  background-color: #685da4;
+  color: #ffffff;
+  border-radius: 20px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.texto_centrado{
+  text-align: center;
+}
+
+.divCentrado{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.contenedor_form{
+  border: solid 1px #000000;
+  padding: 0px;
+  margin: 0px;
+}
+
+
+/* Modal */
+
+.modal {
+  font-size: 12px;
+}
+.modal >   .header {
+  width: 100%;
+  border-bottom: 1px solid gray;
+  font-size: 18px;
+  text-align: center;
+  padding: 5px;
+}
+.modal > .content {
+  width: 100%;
+  padding: 10px 5px;
+}
+.modal > .actions {
+  width: 100%;
+  padding: 10px 5px;
+  margin: auto;
+  text-align: center;
+}
+.modal > .close {
+  cursor: pointer;
+  position: absolute;
+  display: block;
+  padding: 2px 5px;
+  line-height: 20px;
+  right: -10px;
+  top: -10px;
+  font-size: 24px;
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid #cfcece;
+}
 
 
 

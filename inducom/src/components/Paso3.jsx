@@ -1,8 +1,11 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAppContext } from "../context/Contexto";
 import CurrencyInput from "react-currency-input-field";
 import ProgressBar from "@ramonak/react-progress-bar";
+import { AiFillCheckCircle } from "react-icons/ai";
+import { AiFillCloseCircle } from "react-icons/ai";
+import Controles from "./Controles";
 
 export default function Paso3({ pasoSiguiente, pasoAnterior }) {
   const datosContexto = useAppContext();
@@ -26,14 +29,22 @@ export default function Paso3({ pasoSiguiente, pasoAnterior }) {
   var v19 = datosContexto.v19;
   var v20 = datosContexto.v20;
 
-  //Para ir al siguiente
-  const siguiente = () => {
-    datosContexto.pasoSiguiente();
-  };
-  const anterior = () => {
-    datosContexto.pasoAnterior();
-  };
+  //Para validar Formulario
+  const [validado_v22, setValidado_v22] = useState(false);
+  const [validado_v23, setValidado_v23] = useState(false);
+  const [validado_v24, setValidado_v24] = useState(false);
+  const [validado_v26, setValidado_v26] = useState(false);
+  const [validado_v27, setValidado_v27] = useState(false);
+  const [validado_v28, setValidado_v28] = useState(false);
+  const [validado_v29, setValidado_v29] = useState(false);
+  const [validado_v30, setValidado_v30] = useState(false);
+  const [validado_v31, setValidado_v31] = useState(false);
+  const [validado_v32, setValidado_v32] = useState(false);
+  const [validado_v36, setValidado_v36] = useState(false);
+  const [validado_v37, setValidado_v37] = useState(false);
+  const [validado_v39, setValidado_v39] = useState(false);
 
+  
   //Estados solo del Paso3
   const [validado, setValidado] = useState(false);
   const [v21, setV21] = useState(Math.round(datosContexto.v20 * 0.15));
@@ -57,7 +68,97 @@ export default function Paso3({ pasoSiguiente, pasoAnterior }) {
   const [v39, setV39] = useState(0);
   const [v40, setV40] = useState(0);
 
+  useEffect(() => {
+    validarFormulario();
+  }, [v22, v23, v24, v26, v27, v28, v29, v30, v31, v32, v36, v37, v39]);
+
   //Calcular
+
+  const validarFormulario = () => {
+    console.log(v22);
+
+    if (v22 == undefined || v22 < 0 || v22 == "") {
+      setValidado_v22(false);
+      console.log("inició en false");
+      console.log(v22);
+    } else {
+      setValidado_v22(true);
+      console.log("inicio en true");
+      console.log(v22);
+    }
+
+    if (v23 == undefined || v23 < 0 || v23 == "") {
+      setValidado_v23(false);
+    } else {
+      setValidado_v23(true);
+    }
+
+    if (v24 == undefined || v24 < 0 || v24 == "") {
+      setValidado_v24(false);
+    } else {
+      setValidado_v24(true);
+    }
+
+    if (v26 == undefined || v26 < 0 || v26 == "") {
+      setValidado_v26(false);
+    } else {
+      setValidado_v26(true);
+    }
+
+    if (v27 == undefined || v27 < 0 || v27 == "") {
+      setValidado_v27(false);
+    } else {
+      setValidado_v27(true);
+    }
+
+    if (v28 == undefined || v28 < 0 || v28 == "") {
+      setValidado_v28(false);
+    } else {
+      setValidado_v28(true);
+    }
+
+    if (v29 == undefined || v29 < 0 || v29 == "") {
+      setValidado_v29(false);
+    } else {
+      setValidado_v29(true);
+    }
+
+    if (v30 == undefined || v30 < 0 || v30 == "") {
+      setValidado_v30(false);
+    } else {
+      setValidado_v30(true);
+    }
+
+    if (v31 == undefined || v31 < 0 || v31 == "") {
+      setValidado_v31(false);
+    } else {
+      setValidado_v31(true);
+    }
+
+    if (v32 == undefined || v32 < 0 || v32 == "") {
+      setValidado_v32(false);
+    } else {
+      setValidado_v32(true);
+    }
+
+    if (v36 == undefined || v36 < 0 || v36 == "") {
+      setValidado_v36(false);
+    } else {
+      setValidado_v36(true);
+    }
+
+    if (v37 == undefined || v37 < 0 || v37 == "") {
+      setValidado_v37(false);
+    } else {
+      setValidado_v37(true);
+    }
+
+    if (v39 == undefined || v39 < 0 || v39 == "") {
+      setValidado_v39(false);
+    } else {
+      setValidado_v39(true);
+    }
+  };
 
   const calcularV25 = () => {
     setV25(
@@ -104,16 +205,14 @@ export default function Paso3({ pasoSiguiente, pasoAnterior }) {
       favor_o_cargo = v34;
       datosContexto.setFavor_o_cargo(1);
     }
-    
+
     //nunca puede ser negativo, si es negativo, se pone en cero
-    var valor =
-      parseInt(v33) - parseInt(v36) + parseInt(v37) + parseInt(v39);
+    var valor = parseInt(v33) - parseInt(v36) + parseInt(v37) + parseInt(v39);
     if (valor < 0) {
       setV40(0);
     } else {
       setV40(valor);
     }
-
   };
 
   const onChangev37 = (value, name) => {
@@ -126,7 +225,7 @@ export default function Paso3({ pasoSiguiente, pasoAnterior }) {
 
   const onChangev39 = (value, name) => {
     setV39(value);
-    calcular40();
+    //calcular40();
   };
 
   const calcular40 = () => {
@@ -196,25 +295,6 @@ export default function Paso3({ pasoSiguiente, pasoAnterior }) {
     calcularV35();
   };
 
-  //Recuperar variables del contexto
-  var tipo_identificacion = datosContexto.tipo_identificacion;
-  var identificacion = datosContexto.identificacion;
-  var nombre = datosContexto.nombre;
-  var direccion = datosContexto.direccion;
-  var telefono = datosContexto.telefono;
-  var correo = datosContexto.correo;
-
-  var v8 = datosContexto.v8;
-  var v9 = datosContexto.v9;
-  var v11 = datosContexto.v11;
-  var v12 = datosContexto.v12;
-  var v13 = datosContexto.v13;
-  var v14 = datosContexto.v14;
-  var v15 = datosContexto.v15;
-  var v16 = datosContexto.v16;
-  var v19 = datosContexto.v19;
-  var v20 = datosContexto.v20;
-
   function pesos(number) {
     return new Intl.NumberFormat("es-CO", {
       style: "currency",
@@ -223,9 +303,35 @@ export default function Paso3({ pasoSiguiente, pasoAnterior }) {
     }).format(number);
   }
 
+
+  const siguiente = () => {
+    //Guarda los valores v22 a v40 en el contexto
+    datosContexto.setV22(v22);
+    datosContexto.setV23(v23);
+    datosContexto.setV24(v24);
+    datosContexto.setV25(v25);
+    datosContexto.setV26(v26);
+    datosContexto.setV27(v27);
+    datosContexto.setV28(v28);
+    datosContexto.setV29(v29);
+    datosContexto.setV30(v30);
+    datosContexto.setV31(v31);
+    datosContexto.setV32(v32);
+    datosContexto.setV33(v33);
+    datosContexto.setV34(v34);
+    datosContexto.setV35(v35);
+    datosContexto.setV36(v36);
+    datosContexto.setV37(v37);
+    datosContexto.setV38(v38);
+    datosContexto.setV39(v39);
+    datosContexto.setV40(v40);
+    datosContexto.pasoSiguiente();
+  };
+
   return (
     <>
       <div className="contenedor">
+        <Controles />
         <div className="row">
           <div className="col-lg-9">
             <div className="card">
@@ -290,7 +396,6 @@ export default function Paso3({ pasoSiguiente, pasoAnterior }) {
                       <CurrencyInput
                         className="form-control col-3 texto_formulario number"
                         name="v22"
-                        value={v22}
                         onValueChange={(value, name) =>
                           onChangev22(value, name)
                         }
@@ -304,7 +409,6 @@ export default function Paso3({ pasoSiguiente, pasoAnterior }) {
                       <CurrencyInput
                         className="form-control col-3 texto_formulario number"
                         name="v23"
-                        value={v23}
                         onValueChange={(value, name) =>
                           onChangev23(value, name)
                         }
@@ -318,7 +422,6 @@ export default function Paso3({ pasoSiguiente, pasoAnterior }) {
                       <CurrencyInput
                         className="form-control col-3 texto_formulario number"
                         name="v24"
-                        value={v24}
                         onValueChange={(value, name) =>
                           onChangev24(value, name)
                         }
@@ -347,7 +450,6 @@ export default function Paso3({ pasoSiguiente, pasoAnterior }) {
                       <CurrencyInput
                         className="form-control col-3 texto_formulario number"
                         name="v26"
-                        value={v26}
                         onValueChange={(value, name) =>
                           onChangev26(value, name)
                         }
@@ -361,7 +463,6 @@ export default function Paso3({ pasoSiguiente, pasoAnterior }) {
                       <CurrencyInput
                         className="form-control col-3 texto_formulario number"
                         name="v27"
-                        value={v27}
                         onValueChange={(value, name) =>
                           onChangev27(value, name)
                         }
@@ -375,7 +476,6 @@ export default function Paso3({ pasoSiguiente, pasoAnterior }) {
                       <CurrencyInput
                         className="form-control col-3 texto_formulario number"
                         name="v28"
-                        value={v28}
                         onValueChange={(value, name) =>
                           onChangev28(value, name)
                         }
@@ -388,7 +488,6 @@ export default function Paso3({ pasoSiguiente, pasoAnterior }) {
                       <CurrencyInput
                         className="form-control col-3 texto_formulario number"
                         name="v29"
-                        value={v29}
                         onValueChange={(value, name) =>
                           onChangev29(value, name)
                         }
@@ -402,7 +501,6 @@ export default function Paso3({ pasoSiguiente, pasoAnterior }) {
                       <CurrencyInput
                         className="form-control col-3 texto_formulario number"
                         name="v30"
-                        value={v30}
                         onValueChange={(value, name) =>
                           onChangev30(value, name)
                         }
@@ -413,7 +511,6 @@ export default function Paso3({ pasoSiguiente, pasoAnterior }) {
                       <CurrencyInput
                         className="form-control col-3 texto_formulario number"
                         name="v31"
-                        value={v31}
                         onValueChange={(value, name) =>
                           onChangev31(value, name)
                         }
@@ -427,7 +524,6 @@ export default function Paso3({ pasoSiguiente, pasoAnterior }) {
                       <CurrencyInput
                         className="form-control col-3 texto_formulario number"
                         name="v32"
-                        value={v32}
                         onValueChange={(value, name) =>
                           onChangev32(value, name)
                         }
@@ -481,7 +577,6 @@ export default function Paso3({ pasoSiguiente, pasoAnterior }) {
                       <CurrencyInput
                         className="form-control col-3 texto_formulario number"
                         name="v36"
-                        value={v36}
                         onValueChange={(value, name) =>
                           onChangev36(value, name)
                         }
@@ -494,7 +589,6 @@ export default function Paso3({ pasoSiguiente, pasoAnterior }) {
                       </label>
                       <CurrencyInput
                         className="form-control col-3 texto_formulario number"
-                        value={v37}
                         name="v37"
                         onValueChange={(value, name) =>
                           onChangev37(value, name)
@@ -521,7 +615,6 @@ export default function Paso3({ pasoSiguiente, pasoAnterior }) {
                       </label>
                       <CurrencyInput
                         className="form-control col-3 texto_formulario number"
-                        value={v39}
                         name="v39"
                         onValueChange={(value, name) =>
                           onChangev39(value, name)
@@ -540,19 +633,72 @@ export default function Paso3({ pasoSiguiente, pasoAnterior }) {
                       <div className="col-9 texto_campo"></div>
                       <div className="col-3">
                         {datosContexto.favor_o_cargo === 0 ? (
-                          <p className="a_cargo">Según los valores ingresados, este valor debe ser pagado</p>
+                          <>
+                            <p className="a_cargo">
+                              Según los valores ingresados, este valor debe ser
+                              pagado
+                            </p>
+
+                            <button
+                              type="submit"
+                              className="btn btn-primary btn-block"
+                              style={{
+                                display:
+                                  validado_v22 &&
+                                  validado_v23 &&
+                                  validado_v24 &&
+                                  validado_v26 &&
+                                  validado_v27 &&
+                                  validado_v28 &&
+                                  validado_v29 &&
+                                  validado_v29 &&
+                                  validado_v30 &&
+                                  validado_v30 &&
+                                  validado_v31 &&
+                                  validado_v32 &&
+                                  validado_v36 &&
+                                  validado_v37 &&
+                                  validado_v39
+                                    ? "block"
+                                    : "none",
+                              }}
+                              onClick={() => {
+                                siguiente();
+                              }}
+                            >
+                              GENERAR RECIBO
+                            </button>
+                          </>
                         ) : datosContexto.favor_o_cargo === 1 ? (
-                          <p className="a_favor">Según los valores ingresados, tienes saldo a favor</p>
-                        ) : (
-                          null
-                        )}
+                          <p className="a_favor">
+                            Según los valores ingresados, tienes saldo a favor
+                          </p>
+                        ) : null}
                       </div>
                     </div>
 
                     <button
                       type="submit"
                       className="btn btn-success btn-block"
-                      /* disabled={validado ? false : true} */
+                      disabled={
+                        validado_v22 &&
+                        validado_v23 &&
+                        validado_v24 &&
+                        validado_v26 &&
+                        validado_v27 &&
+                        validado_v28 &&
+                        validado_v29 &&
+                        validado_v29 &&
+                        validado_v30 &&
+                        validado_v30 &&
+                        validado_v31 &&
+                        validado_v32 &&
+                        validado_v36 &&
+                        validado_v37 &&
+                        validado_v39
+                          ? false
+                          : true
+                      }
                       onClick={() => {
                         calcularV40();
                       }}
@@ -564,86 +710,330 @@ export default function Paso3({ pasoSiguiente, pasoAnterior }) {
               </div>
             </div>
           </div>
-          <div className="col-lg-3">
+          <div className="col-3">
             <div className="card">
+              <div className="card-header">
+                <b>Campos a Diligenciar</b>
+              </div>
               <div className="card-body">
-                <div className="card">
-                  <div className="card-body">
-                    <p>
-                      Tipo de Identificacion: {tipo_identificacion}
-                      <br />
-                      Identificacion: {identificacion}
-                      <br />
-                      Nombre: {nombre}
-                      <br />
-                      Direccion: {direccion}
-                      <br />
-                      Telefono: {telefono}
-                      <br />
-                      Correo: {correo}
-                      v8: {pesos(v8)}
-                      <br />
-                      v9: {pesos(v9)}
-                      <br />
-                      v11: {pesos(v11)}
-                      <br />
-                      v12: {pesos(v12)}
-                      <br />
-                      v13: {pesos(v13)}
-                      <br />
-                      v14: {pesos(v14)}
-                      <br />
-                      v15: {pesos(v15)}
-                      <br />
-                      v16: {pesos(v16)}
-                      <br />
-                      v19: {pesos(v19)}
-                      <br />
-                      v20: {pesos(v20)}
-                      <br />
-                      v21: {pesos(v21)}
-                      <br />
-                      v22: {pesos(v22)}
-                      <br />
-                      v23: {pesos(v23)}
-                      <br />
-                      v24: {pesos(v24)}
-                      <br />
-                      v25: {pesos(v25)}
-                      <br />
-                      v26: {pesos(v26)}
-                      <br />
-                      v27: {pesos(v27)}
-                      <br />
-                      v28: {pesos(v28)}
-                      <br />
-                      v29: {pesos(v29)}
-                      <br />
-                      v30: {pesos(v30)}
-                      <br />
-                      v31: {pesos(v31)}
-                      <br />
-                      v32: {pesos(v32)}
-                      <br />
-                      v33: {pesos(v33)}
-                      <br />
-                      v34: {pesos(v34)}
-                      <br />
-                      v35: {pesos(v35)}
-                      <br />
-                      v36: {pesos(v36)}
-                      <br />
-                      v37: {pesos(v37)}
-                      <br />
-                      v38: {pesos(v38)}
-                      <br />
-                      v39: {pesos(v39)}
-                      <br />
-                      v40: {pesos(v40)}
-                      <br />
-                    </p>
+                <p className="texto_1">
+                  Asegurate que todos los campos del formulario sean
+                  diligenciados. <br />
+                  Cuando los completas correctamente, se marca con un check
+                  verde.
+                </p>
+
+                {!validado_v22 ? (
+                  <div className="contenedor_mensaje_error">
+                    <div>
+                      <span className="falta">Campo 22</span>
+                    </div>
+                    <div>
+                      <span className="falta">
+                        <AiFillCloseCircle />
+                      </span>
+                    </div>
                   </div>
-                </div>
+                ) : (
+                  <div className="contenedor_mensaje_error">
+                    <div>
+                      <span className="correcto">Campo 22</span>
+                    </div>
+                    <div>
+                      <span className="correcto">
+                        <AiFillCheckCircle />
+                      </span>
+                    </div>
+                  </div>
+                )}
+
+                {!validado_v23 ? (
+                  <div className="contenedor_mensaje_error">
+                    <div>
+                      <span className="falta">Campo 23</span>
+                    </div>
+                    <div>
+                      <span className="falta">
+                        <AiFillCloseCircle />
+                      </span>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="contenedor_mensaje_error">
+                    <div>
+                      <span className="correcto">Campo 23</span>
+                    </div>
+                    <div>
+                      <span className="correcto">
+                        <AiFillCheckCircle />
+                      </span>
+                    </div>
+                  </div>
+                )}
+
+                {!validado_v24 ? (
+                  <div className="contenedor_mensaje_error">
+                    <div>
+                      <span className="falta">Campo 24</span>
+                    </div>
+                    <div>
+                      <span className="falta">
+                        <AiFillCloseCircle />
+                      </span>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="contenedor_mensaje_error">
+                    <div>
+                      <span className="correcto">Campo 24</span>
+                    </div>
+                    <div>
+                      <span className="correcto">
+                        <AiFillCheckCircle />
+                      </span>
+                    </div>
+                  </div>
+                )}
+
+                {!validado_v26 ? (
+                  <div className="contenedor_mensaje_error">
+                    <div>
+                      <span className="falta">Campo 26</span>
+                    </div>
+                    <div>
+                      <span className="falta">
+                        <AiFillCloseCircle />
+                      </span>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="contenedor_mensaje_error">
+                    <div>
+                      <span className="correcto">Campo 26</span>
+                    </div>
+                    <div>
+                      <span className="correcto">
+                        <AiFillCheckCircle />
+                      </span>
+                    </div>
+                  </div>
+                )}
+
+                {!validado_v27 ? (
+                  <div className="contenedor_mensaje_error">
+                    <div>
+                      <span className="falta">Campo 27</span>
+                    </div>
+                    <div>
+                      <span className="falta">
+                        <AiFillCloseCircle />
+                      </span>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="contenedor_mensaje_error">
+                    <div>
+                      <span className="correcto">Campo 27</span>
+                    </div>
+                    <div>
+                      <span className="correcto">
+                        <AiFillCheckCircle />
+                      </span>
+                    </div>
+                  </div>
+                )}
+
+                {!validado_v28 ? (
+                  <div className="contenedor_mensaje_error">
+                    <div>
+                      <span className="falta">Campo 28</span>
+                    </div>
+                    <div>
+                      <span className="falta">
+                        <AiFillCloseCircle />
+                      </span>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="contenedor_mensaje_error">
+                    <div>
+                      <span className="correcto">Campo 28</span>
+                    </div>
+                    <div>
+                      <span className="correcto">
+                        <AiFillCheckCircle />
+                      </span>
+                    </div>
+                  </div>
+                )}
+
+                {!validado_v29 ? (
+                  <div className="contenedor_mensaje_error">
+                    <div>
+                      <span className="falta">Campo 29</span>
+                    </div>
+                    <div>
+                      <span className="falta">
+                        <AiFillCloseCircle />
+                      </span>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="contenedor_mensaje_error">
+                    <div>
+                      <span className="correcto">Campo 29</span>
+                    </div>
+                    <div>
+                      <span className="correcto">
+                        <AiFillCheckCircle />
+                      </span>
+                    </div>
+                  </div>
+                )}
+
+                {!validado_v30 ? (
+                  <div className="contenedor_mensaje_error">
+                    <div>
+                      <span className="falta">Campo 30</span>
+                    </div>
+                    <div>
+                      <span className="falta">
+                        <AiFillCloseCircle />
+                      </span>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="contenedor_mensaje_error">
+                    <div>
+                      <span className="correcto">Campo 30</span>
+                    </div>
+                    <div>
+                      <span className="correcto">
+                        <AiFillCheckCircle />
+                      </span>
+                    </div>
+                  </div>
+                )}
+
+                {!validado_v31 ? (
+                  <div className="contenedor_mensaje_error">
+                    <div>
+                      <span className="falta">Campo 31</span>
+                    </div>
+                    <div>
+                      <span className="falta">
+                        <AiFillCloseCircle />
+                      </span>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="contenedor_mensaje_error">
+                    <div>
+                      <span className="correcto">Campo 31</span>
+                    </div>
+                    <div>
+                      <span className="correcto">
+                        <AiFillCheckCircle />
+                      </span>
+                    </div>
+                  </div>
+                )}
+
+                {!validado_v32 ? (
+                  <div className="contenedor_mensaje_error">
+                    <div>
+                      <span className="falta">Campo 32</span>
+                    </div>
+                    <div>
+                      <span className="falta">
+                        <AiFillCloseCircle />
+                      </span>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="contenedor_mensaje_error">
+                    <div>
+                      <span className="correcto">Campo 32</span>
+                    </div>
+                    <div>
+                      <span className="correcto">
+                        <AiFillCheckCircle />
+                      </span>
+                    </div>
+                  </div>
+                )}
+
+                {!validado_v36 ? (
+                  <div className="contenedor_mensaje_error">
+                    <div>
+                      <span className="falta">Campo 36</span>
+                    </div>
+                    <div>
+                      <span className="falta">
+                        <AiFillCloseCircle />
+                      </span>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="contenedor_mensaje_error">
+                    <div>
+                      <span className="correcto">Campo 36</span>
+                    </div>
+                    <div>
+                      <span className="correcto">
+                        <AiFillCheckCircle />
+                      </span>
+                    </div>
+                  </div>
+                )}
+
+                {!validado_v37 ? (
+                  <div className="contenedor_mensaje_error">
+                    <div>
+                      <span className="falta">Campo 37</span>
+                    </div>
+                    <div>
+                      <span className="falta">
+                        <AiFillCloseCircle />
+                      </span>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="contenedor_mensaje_error">
+                    <div>
+                      <span className="correcto">Campo 37</span>
+                    </div>
+                    <div>
+                      <span className="correcto">
+                        <AiFillCheckCircle />
+                      </span>
+                    </div>
+                  </div>
+                )}
+
+                {!validado_v39 ? (
+                  <div className="contenedor_mensaje_error">
+                    <div>
+                      <span className="falta">Campo 39</span>
+                    </div>
+                    <div>
+                      <span className="falta">
+                        <AiFillCloseCircle />
+                      </span>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="contenedor_mensaje_error">
+                    <div>
+                      <span className="correcto">Campo 39</span>
+                    </div>
+                    <div>
+                      <span className="correcto">
+                        <AiFillCheckCircle />
+                      </span>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
