@@ -1,0 +1,21 @@
+25 Octubre
+- React Router, como crear rutas, protegerlas con el react-router-dom 
+- Repasamos el useContext con sus pasos, siempre revisar el archivo del proyecto books /Store.jsx que tiene el tutorial de pasos.
+- Recuerda el tutorial para hacer uso de las rutas -> https://www.youtube.com/watch?v=q4ywr3eZmk0
+
+
+26 de Octubre
+- Instalé Github Copilot, 10 USD al mes, y voy a probar como funciona
+- npm i express cors bcrypt dotenv jsonwebtoken mongoose nodemon
+    - cors -> librerías para manejo de cors 
+    - bcrypt -> librerías para manejo de encripción de contraseñas
+    - dotenv -> para manejar variables .env de entorno
+    - jsonwebtoken -> para manejar JWT
+    - mongoose -> para manejo de base de datos 
+    - nodemon -> para hacer un watcher del backend, como live reload etc... cargar y ejecutar el codigo que hacemos entiempo real
+
+27 de Octubre
+- Aprendo la estructura de una petición http, y ya se como enviar y recibir desde el backend hacia el frontend mediante NodeJS y React
+- Enviar solicitud vía fetch al backend desde el frontend
+- Enviar respuesta desde el backen hacia el frontend usando (req, res)
+
