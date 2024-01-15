@@ -1,0 +1,46 @@
+
+Backend
+npm init -y -> creamos un package.json, para listar las dependencias y módulos para iniciar
+
+npm i cors express socket.io morgan
+
+cors -> dependencia para manejar los cors en el proyecto
+express -> modulo para manejar rutas, peticiones, etc
+socket.io -> modulo para manejar los sockets
+morgan -> modulo para manejar los logs
+
+npm i -D nodemon -> dependencia para que no tengamos que reiniciar el servidor cada vez que hagamos un cambio
+
+Para agregar modulos EM6, hay que agregar en el package.json el type -> "type": "module",
+
+Para que nodemon funcione en el modo automático, agregar esta línea de código en scripts:
+ ->   "dev": "nodemon server/index.js" (quitar el que viene por default - "test": "echo \"Error: no test specified\" && exit 1")
+
+
+DOTENV
+Este es un módulo usado en node para guardar variables de entorno y sistema y que no se publiquen en git
+
+https://www.npmjs.com/package/dotenv
+ 
+BABEL
+Esta es una librería que permite compatibilidades de Javascript las mas recientes versiones
+npm i -D @babel/core @babel/cli @babel/preset-env @babel/node
+
+
+
+
+** INSTALACIÓN NESTJS **
+
+Instalación  -> npm i -g @nestjs/cli
+Arrancar el servidor -> npm run start:dev
+
+Archivo principal -> main.ts
+
+
+CLI de NESTJS
+
+nest g module users -> genera un modulo (Genera el modulo que contiene una funcionalidad general del app)
+nest g controller users --no-spec -> genera un controller (En el controller se generan las rutas)
+nest g service users --no-spec -> genera un servicio (Servicio, al igual que IONIC, sirve para gestionar funcionalidades del App)
+
+

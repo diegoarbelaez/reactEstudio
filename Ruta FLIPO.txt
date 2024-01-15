@@ -1,0 +1,8 @@
+Curso de Socket.io -> https://www.youtube.com/watch?v=KE8Hy6YNWYY
+Curso de NestJS -> https://www.youtube.com/watch?v=7fOjuCGE_jk
+Curso de TypeORM con MySQL -> https://www.youtube.com/watch?v=W4_oH3anYHU
+Curso de CRUD con Socket.io -> https://www.youtube.com/watch?v=MYqpw0P31ms
+Curso de Redux -> https://www.youtube.com/watch?v=w2rAP7d6ndg
+
+
+
